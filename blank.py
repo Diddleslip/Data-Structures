@@ -29,7 +29,7 @@ class Node:
 
 class Stack:
     def __init__(self):
-        # self.size = 0
+        self.size = 0
         self.head = None
         self.tail = None
 
@@ -37,7 +37,7 @@ class Stack:
         current = self.head
         count = 0
         while current:
-            count += 1 
+            count +=1 
             current = current.get_next()
         return count
 
@@ -45,11 +45,10 @@ class Stack:
         new_node = Node(value)
 
         if not self.head and not self.tail:
-            # self.size += 1
             self.head = new_node
             self.tail = new_node
         else:
-            # self.size += 1
+            self.size += 1
             self.tail.set_next(new_node)
             self.tail = new_node
 
@@ -62,40 +61,25 @@ class Stack:
     def pop(self):
         if self.tail is None:
             return None
-        # save the tail Node's data
+
         data = self.tail.get_value()
-        # both head and tail refer to the same Node 
-        # there's only one Node in the linked list 
+
         if self.head is self.tail:
-            # set both to be None
-            # self.size -= 1
             self.head = None
-            self.tail = None
+            self.head = None
         else:
-            # in order to update `self.tail` to point to the
-            # the Node _before_ the tail, we need to traverse
-            # the whole linked list starting from the head,
-            # because we cannot move backwards from any one
-            # Node, so we have to start from the beginning
+            self.size -= 1
             current = self.head
 
-            # traverse until we get to the Node right 
-            # before the tail Node 
             while current.get_next() != self.tail:
                 current = current.get_next()
 
-            # `current` is now pointing at the Node right
-            # before the tail Node
-            print("THIS IS CURRENT", current.get_value())
-            # self.size -= 1
             self.tail = current
-            current.next_node = None
-            # print("SIZE", self.size)
-        
+
         return data
 
         # if self.size == 0:
         #     return None
         # else: 
-            # self.size -= 1
+        #     self.size -= 1
         #     return self.storage.pop()
