@@ -38,7 +38,7 @@ class Queue:
         count = 0
         while current:
             count += 1
-            current = current.get_next()
+            current = current.next_node
         return count
 
     def enqueue(self, value):
@@ -72,3 +72,6 @@ class Queue:
         # else:
         #     self.size -= 1
         #     return self.storage.pop(0)
+
+
+### THE DIFFERENCE BETWEEN A LINKED LIST AND AN ARRAY IS THAT WHEN AN ARRAY REMOVES THE FIRST ITEM, IT HAS TO SHIFT ALL OF ITS PIECES OVER ONE, MAKING THE TIME NOTATION FOR IT N SQUARED. MEANWHILE, LINKED LISTS JUST SHIFT WHERE THE SELF.HEAD IS AND TRASH COLLECTION REMOVES THE, "ONCE WAS" SELF.HEAD
