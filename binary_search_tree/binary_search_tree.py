@@ -52,15 +52,85 @@ class BSTNode:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # print("THIS IS SELF.LEFT!",self.left.value)
+        # Checking if the main root is the number we want
+        if target == self.value:
+            return True ## I'M NOT SURE IF I NEED THIS PART
+
+        # If not the same as the main root and .left and .right don't exist, return False
+        if not self.left and not self.right:
+            return False
+        # Check if target is smaller than root value
+        if target < self.value:
+            # Go left
+            # check if self.left is a node
+            if self.left:
+                # Check if target == self.value
+                if target == self.left.value:
+                    return True
+                else:
+                    # make self.left the new root and check that
+                    self.left.contains(target)
+            else: 
+                #if self.left doesn't exist up to this point return False
+                return False
+                # Check if target is bigger than root value
+        else:
+            # Go right
+            if self.right:
+                # Check if target == self.value
+                if target == self.right.value:
+                    return True
+                else:
+                    # make self.right the new root and check that
+                    self.right.contains(target)
+            else:
+                #if it doesn't exist then return False
+                return False
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # Start of with max_value as the root's value
+        max_value = self.value
+        # print(max_value)
+
+        # self.right is biggest value in our case
+        # we want to go to the right branches only
+        # check if there is a self.right
+        if self.right:
+            # compare max_value with the next self.right in line
+            if max_value < self.right.value:
+                # if greater, assign new value and go to next self.right
+                max_value = self.right.value
+                return self.right.get_max()
+            # if the value isn't bigger just go to next branch
+            else: 
+               return self.right.get_max()
+
+        # else we traveled through all self.right's and got the highest
+        else:
+            return max_value
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        print("THIS IS SELF.VALUE", self.value)
+        fn(self.value)
+        if self.left and self.right:
+            # fn(self.left.value)
+            # fn(self.right.value)
+            return self.left.for_each(fn), self.right.for_each(fn)
+        
+        if self.left:
+            # fn(self.left.value)
+            return self.left.for_each(fn)
+
+        elif self.right:
+            # fn(self.right.value)
+            return self.right.for_each(fn)
+                    
+        else:
+            return
 
     # Part 2 -----------------------
 

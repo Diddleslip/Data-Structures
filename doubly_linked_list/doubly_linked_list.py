@@ -48,18 +48,16 @@ class DoublyLinkedList:
     as the new head of the list. Don't forget to handle 
     the old head node's previous pointer accordingly."""
     def add_to_head(self, value):
-        new_node = ListNode(value, None, self.head)
+        # new_node = ListNode(value, None, self.head)
         
         if self.head is None and self.tail is None:
             self.length += 1
-            self.head = new_node
-            self.tail = new_node
+            self.head = ListNode(value)
+            self.tail = self.head
         else:
             self.length += 1
-            self.head.insert_before(new_node.value)
-            self.head = new_node
-
-        return new_node
+            self.head.insert_before(value)
+            self.head = self.head.prev
 
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
@@ -83,18 +81,16 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
-        new_node = ListNode(value, self.tail)
+        # new_node = ListNode(value, self.tail)
 
         if self.head is None and self.tail is None:
             self.length += 1
-            self.head = new_node
-            self.tail = new_node
+            self.head = ListNode(value)
+            self.tail = self.head
         else:
             self.length += 1
-            self.tail.insert_after(new_node.value)
-            self.tail = new_node
-
-        return new_node
+            self.tail.insert_after(value)
+            self.tail = self.tail.next
 
     """Removes the List's current tail node, making the 
     current tail's previous node the new tail of the List.
@@ -176,10 +172,10 @@ class DoublyLinkedList:
                 max_value = current.value
             
             current = current.next
-            print("THIS IS CURRENT.VALUE",current.value)
+            # print("THIS IS CURRENT.VALUE",current.value)
         ## If scenario to check for self.tail.value
-        if current == self.tail:
-            print("What's up") 
+        # if current == self.tail:
+        #     print("What's up") 
 
         # print("THIS IS MAX VALUE", max_node)
         return max_value        
