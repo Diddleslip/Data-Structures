@@ -6,12 +6,6 @@ class ListNode:
         self.prev = prev
         self.next = next
 
-    def get_value(self):
-        return self.value
-
-    def get_next(self):
-        return self.next
-
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
@@ -62,7 +56,7 @@ class DoublyLinkedList:
             self.tail = new_node
         else:
             self.length += 1
-            self.head.insert_before(new_node)
+            self.head.insert_before(new_node.value)
             self.head = new_node
 
         return new_node
@@ -71,7 +65,7 @@ class DoublyLinkedList:
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
     def remove_from_head(self):
-        value = self.head.get_value()
+        value = self.head.value
 
         if self.head is None and self.tail is None:
             return None
@@ -97,7 +91,7 @@ class DoublyLinkedList:
             self.tail = new_node
         else:
             self.length += 1
-            self.tail.insert_after(new_node)
+            self.tail.insert_after(new_node.value)
             self.tail = new_node
 
         return new_node
@@ -106,7 +100,7 @@ class DoublyLinkedList:
     current tail's previous node the new tail of the List.
     Returns the value of the removed Node."""
     def remove_from_tail(self):
-        value = self.tail.get_value()
+        value = self.tail.value
 
         if self.head is None and self.tail is None:
             return None
@@ -171,4 +165,39 @@ class DoublyLinkedList:
         
     """Returns the highest value currently in the list"""
     def get_max(self):
-        pass
+        if not self.head:
+            return None
+
+        max_value = self.head.value
+        current = self.head
+
+        while current is not None:
+            if current.value > max_value:
+                max_value = current.value
+            
+            current = current.next
+            print("THIS IS CURRENT.VALUE",current.value)
+        ## If scenario to check for self.tail.value
+        if current == self.tail:
+            print("What's up") 
+
+        # print("THIS IS MAX VALUE", max_node)
+        return max_value        
+        
+
+        ## SEAN'S CODE BELOW
+
+        # if self.head is None:
+        #     return None
+
+        # max_so_far = self.head.value
+
+        # current = self.head.next
+
+        # while current is not None:
+        #     if current.value > max_so_far:
+        #         max_so_far = current.value
+
+        #     current = current.next
+
+        # return max_so_far
